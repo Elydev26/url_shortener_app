@@ -35,7 +35,8 @@ $ yarn install
 ## Running the app
 
 ```bash
-# development
+# developmentgit merge origin/main --allow-unrelated-histories
+
 $ yarn run start
 
 # watch mode
