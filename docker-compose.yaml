@@ -1,3 +1,93 @@
+# services:
+#   redis:
+#     image: 'redis/redis-stack'
+#     ports:
+#       - '6379:6379'
+#       - '8001:8001'
+#     networks:
+#       - urlnet
+#   dev:
+#     build:
+#       context: ./backend/link-shortener
+#       dockerfile: Dockerfile
+#     command: bash -c "cd /app && yarn run start:dev"
+#     environment:
+#       REDIS_HOST: redis
+#       REDIS_PORT: 6379
+#     ports:
+#       - '3000:3000'
+#     volumes:
+#       - './backend/link-shortener:/app'
+#     depends_on:
+#       - redis
+#     networks:
+#       - urlnet
+
+# networks:
+#   urlnet:
+
+# version: '3'
+# services:
+#   redis:
+#     image: 'redis/redis-stack'
+#     ports:
+#       - '6379:6379'
+#       - '8001:8001'
+#     networks:
+#       - urlnet
+#   dev:
+#     build:
+#       context: ./backend/link-shortener
+#       dockerfile: Dockerfile
+#     command: bash -c "cd /app && yarn run start:dev"
+#     environment:
+#       REDIS_HOST: redis
+#       REDIS_PORT: 6379
+#     ports:
+#       - '3000:3000'
+#     volumes:
+#       - './backend/link-shortener:/app'
+#     depends_on:
+#       - redis
+#     networks:
+#       - urlnet
+
+# networks:
+#   urlnet:
+
+# version: '3.8'
+
+# services:
+#   redis:
+#     image: 'redis/redis-stack'
+#     ports:
+#       - '6379:6379'
+#       - '8001:8001'
+#     networks:
+#       - urlnet
+
+#   dev:
+#     build:
+#       context: ./link-shortener
+#       dockerfile: Dockerfile
+#     command: bash -c "cd /app && npm run start:dev"
+#     environment:
+#       REDIS_HOST: redis
+#       REDIS_PORT: 6379
+#     ports:
+#       - '3000:3000'
+#     volumes:
+#       - './link-shortener:/app'
+#     depends_on:
+#       - redis
+#     networks:
+#       - urlnet
+
+# networks:
+#   urlnet:
+
+version: '3.8'
+
 services:
   redis:
     image: 'redis/redis-stack'
@@ -6,18 +96,19 @@ services:
       - '8001:8001'
     networks:
       - urlnet
+
   dev:
     build:
-      context: ./backend/link-shortener
+      context: .
       dockerfile: Dockerfile
-      command: bash -c "cd /app && yarn run start:dev"
+    command: bash -c "cd /app && yarn run start:dev"
     environment:
       REDIS_HOST: redis
       REDIS_PORT: 6379
     ports:
       - '3000:3000'
     volumes:
-      - './backend/link-shortener:/app'
+      - './:/app'
     depends_on:
       - redis
     networks:
